@@ -1,0 +1,111 @@
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set NERDTree
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+set exchange
+set vim-highlightedyank
+set which-key
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:highlightedyank_highlight_duration = "1000"
+let g:WhichKey_ShowVimActions = "true"
+let g:WhichKey_ShowVimActions = "true"
+
+" <C-n> seems to me as a better solution than <M->,
+
+" but we should finally support vim-visual-multi because vim-multiple-cursors is deprecated now
+" map <C-n> <Plug>NextWholeOccurrence
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set relativenumber nu
+" add < to matchpairs"
+set mps+=<:>
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set ideamarks
+set idearefactormode=keep
+
+""" Plugin settings -------------------------
+set keep-english-in-normal-and-restore-in-insert
+set timeoutlen=10000
+
+
+""" My Mappings -----------------------------
+inoremap jk <Esc>
+inoremap Jk <Esc>
+
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>e :NERDTreeFocus<CR>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
+command! Z action ToggleDistractionFreeMode
+command! Ref action ReformatCode
+command! Opi action OptimizeImports
+
+map gh <Action>(ShowErrorDescription)
+
+map <leader>x <Action>(CloseContent)
+
+map <leader>o <Action>(FileStructurePopup)
+map <leader>r <Action>(Refactorings.QuickListPopupAction)
+map <leader>u <Action>(FindUsages)
+map <leader>r <Action>(RenameElement)
+map <leader>c <Action>(Stop)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+
+map <leader>vs <Action>(SelectInProjectView)
+map <leader>va <Action>(Annotate)
+map <leader>vh <Action>(Vcs.ShowTabbedFileHistory)
+map <S-Space> <Action>(GotoNextError)
+
+""" Navigate methods
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
+
+
+"" Source your .vimrc
+"source ~/.vimrc
+map <leader>/ <Action>(CommentByLineComment)
+map <leader><leader>r <Action>(Run)
+map <leader><leader>d <Action>(Debug)
+map <leader>db <Action>(ToggleLineBreakpoint)
+
+map <leader>J Ji <ESC>
+
+
+" Just makes me nervous
+map H h
+" make Y effect to end of line instead of whole line
+map Y y$
+
+" Toggle case and start typing. E.g. `<leader>iget`: `property` -> `getProperty`
+" map <leader>i ~hi
+" Remove selection and toggle case. E.g. `v2l<leader>u`: `getProperty` -> `property`
+" vmap <leader>u d~h
+
+" I think it's a better solution
+map U <C-R>
+
+""" Strict mode for development ---------------
+set ideastrictmode
+
